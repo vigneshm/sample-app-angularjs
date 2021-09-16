@@ -1,14 +1,16 @@
 /**
  * This component renders details for a single contact
- * 
+ *
  * A button messages the contact by linking to `mymessages.compose` state passing the email as a state parameter.
  * Another button edits the contact by linking to `contacts.contact.edit` state.
  */
 
-export const contactView = {
-  bindings: {contact: '<'},
-
-  template: `
+window.angular.module("ng").run([
+  "$templateCache",
+  function (templateCache) {
+    templateCache.put(
+      "/path/to/contactView",
+      `
     <div class="contact">
     
       <contact-detail contact="$ctrl.contact"></contact-detail>
@@ -25,4 +27,13 @@ export const contactView = {
       </button>
       
     </div>
-`};
+`
+    );
+  },
+]);
+
+export const contactView = {
+  bindings: { contact: "<" },
+
+  templateUrl: "/path/to/contactView",
+};
